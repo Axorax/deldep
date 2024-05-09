@@ -1,0 +1,21 @@
+name: Greet and Record Time
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  greet_and_record_time:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Greet and Record Time
+        uses: ./ # Use the action defined in the current repository
+        with:
+          who-to-greet: 'GitHub User'
+        
+      - name: Show the time
+        run: echo "The time is ${{ steps.greet_and_record_time.outputs.time }}"
